@@ -14,6 +14,8 @@ public class MovingObstacle : MonoBehaviour
         int pointIndex;
     int pointCount;
     int direction = 1;
+    public CircleCollider2D col2D;
+    public bool colliderState=true;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class MovingObstacle : MonoBehaviour
         pointCount = wayPoints.Length;
         pointIndex = 1;
         targetPos = wayPoints[pointIndex].transform.position;
+     //   col2D= GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -40,6 +43,13 @@ public class MovingObstacle : MonoBehaviour
         {
             NextPoint();
         }
+
+      /*  if(Input.GetKeyDown(KeyCode.Space))
+        {
+            col2D.enabled = !colliderState;
+            colliderState = !colliderState;
+        }
+      */
     }
 
     void NextPoint()
@@ -58,7 +68,7 @@ public class MovingObstacle : MonoBehaviour
         targetPos = wayPoints[pointIndex].transform.position;
     }
 
-
+    
 
 
 }
