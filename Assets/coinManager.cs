@@ -10,6 +10,7 @@ public class coinManager : MonoBehaviour
     public Text coinText;
     public GameObject door;
     private bool doorDestroyed;
+    public int totalCap;
     void Start()
     {
         
@@ -17,8 +18,8 @@ public class coinManager : MonoBehaviour
 
     void Update()
     {
-        coinText.text = "Capsules Saved:" + coinCount.ToString() + "/8";
-        if (coinCount == 8 && !doorDestroyed)
+        coinText.text = "Capsules Saved:" + coinCount.ToString() + "/"+totalCap.ToString();
+        if (coinCount == totalCap && !doorDestroyed)
         {
             doorDestroyed = true;
             Destroy(door);
