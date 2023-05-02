@@ -70,6 +70,8 @@ public class TopDownMovement : MonoBehaviour
     private bool blinkState; // current state of the blink
     private float blinkTimer; // timer for blinking
 
+    public coinManager cm;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -138,6 +140,7 @@ private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("collectible")) 
         {
+            cm.coinCount++;
             print("we have collected");
 
            Destroy(collision.gameObject);
