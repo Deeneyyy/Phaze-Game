@@ -71,6 +71,7 @@ public class TopDownMovement : MonoBehaviour
     private float blinkTimer; // timer for blinking
 
     public coinManager cm;
+    public PlayerStamins playerStamins;
 
     void Start()
     {
@@ -88,13 +89,25 @@ public class TopDownMovement : MonoBehaviour
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
+       
+        if (moveInput.x !=0)
+        {
+            moveInput.y = 0;
+        }
+        else if (moveInput.y !=0)
+        {
+            moveInput.x = 0;
+        }
 
         moveInput.Normalize();
 
         rb2d.velocity = moveInput * moveSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&(playerStamins.currentStamina-playerStamins.damagePlayer >0))
         {
+            //this is for stamina bar
+            //StaminaBar.Instance.UseStamina(15);
+            
             isPhasing = !isPhasing;
             phaseTimer = phaseTime;
             blinkState = false;
