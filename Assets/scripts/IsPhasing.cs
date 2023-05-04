@@ -8,6 +8,7 @@ public class IsPhasing : MonoBehaviour
     public bool colliderStatus=true;
     public bool isPhase;
     public float phaseTime = 3.0f; // time limit for phasing
+    public PlayerStamins playerStamins;
 
     private float phaseTimer; // timer for phasing
 
@@ -32,7 +33,7 @@ public class IsPhasing : MonoBehaviour
 
         //}
 
-          if (Input.GetKeyDown(KeyCode.Space))
+          if (Input.GetKeyDown(KeyCode.Space) )
         {
             isPhase = !isPhase;
             phaseTimer = phaseTime;

@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
-{
+
+
+{  
+    
+    //targetting the player
+
     public Transform target;
     public Vector3 offset;
     public float damping;
@@ -21,3 +26,6 @@ public class CameraFollow : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, movePosition,ref velocity, damping);
     }
 }
+
+
+

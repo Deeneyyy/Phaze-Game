@@ -19509,6 +19509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 100
   currentStamina: 0
+  damagePlayer: 0
   staminaBar: {fileID: 1365849089}
 --- !u!1001 &1788539941
 PrefabInstance:
@@ -19982,7 +19983,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a776f3be3de914345a4e42c0aac7b918, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
