@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*public class TopDownMovement : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class TopDownMovement : MonoBehaviour
     public Rigidbody2D rb2d;
     private Vector2 moveInput;
     public bool isPhasing;
-    public Color or_color;
+    public Color or_color= Color.white;
     public Color space_color;
     public SpriteRenderer sr;
     public float phaseTime = 3.0f; // time limit for phasing
@@ -71,30 +72,63 @@ public class TopDownMovement : MonoBehaviour
     private float blinkTimer; // timer for blinking
 
     public coinManager cm;
+    public PlayerStamins playerStamins;
 
+    public Animator animator;
+    public Sprite[] playerSprite;
+    public CircleCollider2D circleCollider;
+    public bool isGameOver=false;
+
+    public static TopDownMovement instance;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         isPhasing = false;
-        or_color = new Color(0.282f, 0.643f, 0.737f);
-        space_color = new Color(0.886f, 0.624f, 0.212f);
+        or_color = Color.white;
+        space_color = Color.white;
         sr = GetComponent<SpriteRenderer>();
         phaseTimer = phaseTime;
         blinkState = false;
         blinkTimer = 0f;
+        animator = GetComponent<Animator>();
+        sr.sprite = playerSprite[0];
+        animator.SetBool("Death", false);
+        animator.SetBool("Trigger", false);
+        circleCollider=GetComponent<CircleCollider2D>();
     }
 
     void Update()
     {
+        circleCollider.enabled = true;
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
+       
+        if (moveInput.x !=0)
+        {
+            moveInput.y = 0;
+        }
+        else if (moveInput.y !=0)
+        {
+            moveInput.x = 0;
+        }
 
         moveInput.Normalize();
 
         rb2d.velocity = moveInput * moveSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&(playerStamins.currentStamina-playerStamins.damagePlayer >0)&&(isGameOver==false))
         {
+            //this is for stamina bar
+            //StaminaBar.Instance.UseStamina(15);
+            
             isPhasing = !isPhasing;
             phaseTimer = phaseTime;
             blinkState = false;
@@ -103,6 +137,8 @@ public class TopDownMovement : MonoBehaviour
 
         if (isPhasing)
         {
+            animator.SetBool("Trigger", true);
+            sr.sprite = playerSprite[1];
             sr.color = space_color;
 
             // Update phase timer and blink timer
@@ -122,11 +158,15 @@ public class TopDownMovement : MonoBehaviour
             {
                 isPhasing = false;
                 sr.enabled = true;
+                animator.SetBool("Trigger", false);
+                sr.sprite = playerSprite[0];
                 sr.color = or_color;
             }
         }
         else
         {
+            animator.SetBool("Trigger", false);
+            sr.sprite = playerSprite[0];
             sr.color = or_color;
         }
     }
@@ -134,9 +174,8 @@ public class TopDownMovement : MonoBehaviour
 
 
 
-
-//this is the collectible
-private void OnTriggerEnter2D(Collider2D collision)
+    //this is the collectible
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("collectible")) 
         {

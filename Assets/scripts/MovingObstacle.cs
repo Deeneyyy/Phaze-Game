@@ -37,11 +37,14 @@ public class MovingObstacle : MonoBehaviour
 
     private void Update()
     {
-        var step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
-        if ( transform.position == targetPos )
+        if (TopDownMovement.instance.isGameOver == false)
         {
-            NextPoint();
+            var step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+            if (transform.position == targetPos)
+            {
+                NextPoint();
+            }
         }
 
       /*  if(Input.GetKeyDown(KeyCode.Space))

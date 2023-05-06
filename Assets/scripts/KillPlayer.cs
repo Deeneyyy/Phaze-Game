@@ -5,19 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour
 {
-    public int Respawn;
     
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            TopDownMovement.instance.animator.SetTrigger("Death");
+            TopDownMovement.instance.isGameOver = true;
+            StartCoroutine(Restart());
         }
 
 
+
     }
-    
-       
-    
+    public IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
 }

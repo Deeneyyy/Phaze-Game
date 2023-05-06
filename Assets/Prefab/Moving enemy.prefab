@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7724777763334168810}
   - component: {fileID: 7724777763334168811}
   - component: {fileID: 7724777763334168809}
+  - component: {fileID: 225198329782830535}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Obstacle
@@ -131,8 +132,8 @@ Transform:
   m_GameObject: {fileID: 7724777763334168817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.11, y: 1.11, z: 1.11}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7724777763205300357}
   m_RootOrder: 0
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8679245, g: 0.7367998, b: 0.47080812, a: 1}
+  m_Color: {r: 1, g: 0.88002896, b: 0.6289308, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -257,6 +258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crobstl: {fileID: 7724777763334168821}
   colliderStatus: 1
+  isPhase: 0
+  phaseTime: 3
+  playerStamins: {fileID: 0}
 --- !u!114 &7724777763334168811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +300,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &225198329782830535
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7724777763334168817}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e6301a4d12de9f4c9f87f05c77a4954, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7724777763496139931
 GameObject:
   m_ObjectHideFlags: 0
