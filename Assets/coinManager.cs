@@ -18,7 +18,7 @@ public class coinManager : MonoBehaviour
 
     void Update()
     {
-        coinText.text = "Capsules Saved:" + coinCount.ToString() + "/"+totalCap.ToString();
+        coinText.text = "Saved:" + coinCount.ToString() + "/"+totalCap.ToString();
         if (coinCount == totalCap && !doorDestroyed)
         {
             doorDestroyed = true;

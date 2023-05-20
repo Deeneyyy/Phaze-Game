@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MoreMountains.Feedbacks;
 
 /*public class TopDownMovement : MonoBehaviour
 {
@@ -119,7 +120,10 @@ public class TopDownMovement : MonoBehaviour
         {
             moveInput.x = 0;
         }
-
+        if(isGameOver) {
+            moveInput.x = 0;
+            moveInput.y = 0;
+        }
         moveInput.Normalize();
 
         rb2d.velocity = moveInput * moveSpeed;
@@ -171,11 +175,10 @@ public class TopDownMovement : MonoBehaviour
         }
     }
 
+   
 
-
-
-    //this is the collectible
-    private void OnTriggerEnter2D(Collider2D collision)
+        //this is the collectible
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("collectible")) 
         {
@@ -186,4 +189,14 @@ public class TopDownMovement : MonoBehaviour
         }
     }
     
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.gameObject.CompareTag("Obstacle"))
+        //{
+
+        //    JumpFeedback.PlayFeedbacks();
+
+        //}
+    }
+
 }
